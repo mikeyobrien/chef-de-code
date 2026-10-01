@@ -181,6 +181,8 @@ For every green PR, the first mate states its confidence that the change does wh
 At or above the captain's cutoff, the first mate merges it and reports the outcome in one line; below the cutoff, the PR waits for the captain's word.
 The rating is judgment and belongs to the agent; comparing it against the cutoff and checking that CI is green is mechanics and belongs to the land script.
 The cutoff is one number the captain sets and changes, kept in config rather than in instructions.
+Confidence is scored from 0 to 100, and the cutoff starts at 90: self-rated confidence runs high, so the bar starts strict and drops only as the merge record earns it.
+The scorer is replaceable: a dedicated System One JEV model is expected to take over the rating, and the cutoff contract stays the same when it does.
 No confidence clears a red PR, and destructive, irreversible, or security-sensitive changes always wait for the captain.
 
 ## Maintaining this file
