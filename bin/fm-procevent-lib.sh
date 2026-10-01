@@ -1292,8 +1292,15 @@ fm_procevent_mark_handled() {
     rm -f -- "$tmp"
     return 2
   fi
+  local link_rc=0
   if ln "$tmp" "$marker" 2>/dev/null; then
     rm -f -- "$tmp"
+    return 0
+  fi
+  # Fallback for filesystems or kernels that deny hard links (e.g. some Android
+  # builds): a rename is also an atomic same-directory create-and-publish, and
+  # the marker is still an ordinary non-symlink regular file for the check above.
+  if mv -f -- "$tmp" "$marker" 2>/dev/null; then
     return 0
   fi
   rm -f -- "$tmp"

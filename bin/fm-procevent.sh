@@ -1330,9 +1330,12 @@ EOF
     esac
   fi
 
-  if [ "$capture_state" = no-result ] || { [ "$extension_owner" -eq 0 ] && [ "$rc" -ne 0 ] && [ ! -s "$out" ]; }; then
+  if [ "$capture_state" = no-result ] || { [ "$extension_owner" -eq 0 ] && { [ "$rc" -ne 0 ] || [ ! -s "$out" ]; } && [ ! -s "$out" ]; }; then
     # No usable result. Leave the registration armed; only a clean empty
     # wait may continue under this owner. Failed reads await reconciliation.
+    # An empty capture with rc=0 is also treated as no-result: some remote
+    # transports (e.g. Tailscale SSH sessions) swallow child exit codes, so a
+    # clean empty wait can arrive as rc=0 with no bytes rather than exit 75.
     if [ "$extension_owner" -eq 0 ]; then
       rm -f -- "$out"
       STAGED_OUTPUT=
