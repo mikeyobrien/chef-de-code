@@ -154,14 +154,14 @@ Tests follow their subject: when a surface goes, its tests go with it, and the t
 
 Where the tree stands at the start of the strip, and the budget it is cut toward:
 
-| Surface                     | Now                            | Budget                                          |
-| --------------------------- | ------------------------------ | ----------------------------------------------- |
-| `AGENTS.md`                 | about 6,800 words              | at most 1,500 words                             |
-| `bin/`                      | 214 files, about 120,000 lines | about ten scripts                               |
-| `tests/`                    | 264 files, about 217,000 lines | the minimal machine and the invariants, no more |
-| `docs/`                     | 66 files, about 19,000 lines   | a few pages at most                             |
-| Agent skills                | 29                             | a handful, each with a rare trigger             |
-| Harnesses, backends, forges | 14, 5, 3                       | Pi, Herdr, GitHub                               |
+| Surface                     | Now                            | Budget                                                     |
+| --------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| `AGENTS.md`                 | about 6,800 words              | at most 1,500 words                                        |
+| `bin/`                      | 214 files, about 120,000 lines | the eight verbs, the secondmate route, and their libraries |
+| `tests/`                    | 264 files, about 217,000 lines | the minimal machine and the invariants, no more            |
+| `docs/`                     | 66 files, about 19,000 lines   | a few pages at most                                        |
+| Agent skills                | 29                             | a handful, each with a rare trigger                        |
+| Harnesses, backends, forges | 14, 5, 3                       | Pi, Herdr, GitHub                                          |
 
 ## Choices made
 
