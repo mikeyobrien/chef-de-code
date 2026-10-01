@@ -86,7 +86,8 @@ Minimum: none - this principle is the knife.
 These survive every cut, because together they are what makes delegation safe enough to look away from:
 
 - The first mate never writes to a project; workers do, each in an isolated worktree.
-- Nothing merges without the captain's explicit word, unless the captain granted standing merge autonomy for that project.
+- Nothing merges without the captain's explicit word, except a green PR whose stated confidence clears the captain's cutoff.
+- A red PR never merges, and anything destructive, irreversible, or security-sensitive waits for the captain whatever its confidence.
 - Unlanded work is never torn down; a refusal to discard is a finding, not an obstacle.
 - Workers never address the captain.
 - Outcomes are reported faithfully, failures included, with the evidence.
@@ -104,13 +105,13 @@ The principles force eight verbs, each owned by one script:
 | send     | Put text in front of a worker                                                               | 1          |
 | peek     | Read a worker's terminal                                                                    | 7          |
 | watch    | Sleep until a status line or a quiet worker needs judgment, then wake the first mate        | 7          |
-| land     | Merge a PR, or a local branch, on the captain's word                                        | 5          |
+| land     | Merge a green PR on the captain's word, or when its stated confidence clears the cutoff     | 5, 8       |
 | teardown | Remove a finished task's worktree and terminal, refusing anything unlanded                  | 3, 5       |
 
 Around those verbs the machine needs one instruction file, one status vocabulary small enough to state inside the brief, one backlog, and one hook for the primary harness.
 A skill exists only for a situation rare enough that loading it every session would be waste.
 
-A secondmate is the same machine run again one level down: its own home, records, and session lock, a charter saying which work routes to it, and status reported to its parent the way a worker reports.
+A secondmate is the same machine run again one level down, on this machine or another reachable over SSH: its own home, records, and session lock, a charter saying which work routes to it, and status reported to its parent the way a worker reports.
 It adds a home and a charter, not new verbs, and it stays idle until the parent routes it work.
 
 ## What is not the essence
@@ -169,14 +170,18 @@ The principles say keep one of each; these are the ones the captain kept:
 - **Harness:** Pi, for the first mate and every worker.
 - **Terminal backend:** Herdr.
 - **Delivery:** direct PR on GitHub - the worker pushes a branch and opens a PR, with no separate validation pipeline.
-- **Kept option:** secondmates.
+- **Kept option:** secondmates, local or on other machines reached over SSH.
+- **Merging:** automatic, gated by a confidence cutoff.
 
 Everything outside these choices is breadth under the reduction test and goes.
 
-Still open:
+### Confidence-gated merging
 
-- Whether standing merge autonomy survives, or every merge waits for the captain's word.
-- Whether secondmates keep the remote route to other machines, or run on this machine only.
+For every green PR, the first mate states its confidence that the change does what the captain asked and nothing more, with the evidence behind that number.
+At or above the captain's cutoff, the first mate merges it and reports the outcome in one line; below the cutoff, the PR waits for the captain's word.
+The rating is judgment and belongs to the agent; comparing it against the cutoff and checking that CI is green is mechanics and belongs to the land script.
+The cutoff is one number the captain sets and changes, kept in config rather than in instructions.
+No confidence clears a red PR, and destructive, irreversible, or security-sensitive changes always wait for the captain.
 
 ## Maintaining this file
 
