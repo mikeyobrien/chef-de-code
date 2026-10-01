@@ -110,6 +110,9 @@ The principles force eight verbs, each owned by one script:
 Around those verbs the machine needs one instruction file, one status vocabulary small enough to state inside the brief, one backlog, and one hook for the primary harness.
 A skill exists only for a situation rare enough that loading it every session would be waste.
 
+A secondmate is the same machine run again one level down: its own home, records, and session lock, a charter saying which work routes to it, and status reported to its parent the way a worker reports.
+It adds a home and a charter, not new verbs, and it stays idle until the parent routes it work.
+
 ## What is not the essence
 
 Most of the current tree is one of three kinds of accidental weight.
@@ -120,7 +123,7 @@ Many interchangeable choices where one is used: fourteen verified harnesses, fiv
 The essence needs one of each.
 
 **Optional features.**
-Capabilities that serve the captain but not the core loop: public Relay replies on X and Discord, voice relay, mail, calm mode, the bearings board and visual reports, the fleet ledger, wedge alarms, contribution tracking, process-event sources, away and quiet supervision with its daemon and headless supervision host, and persistent secondmates, local and remote.
+Capabilities that serve the captain but not the core loop: public Relay replies on X and Discord, voice relay, mail, calm mode, the bearings board and visual reports, the fleet ledger, wedge alarms, contribution tracking, process-event sources, and away and quiet supervision with its daemon and headless supervision host.
 
 **Guards on guards.**
 Machinery that protects other machinery rather than an invariant: per-harness turn-end guards, pre-tool command policies, the cd and subagent guards, startup memory budgets, generation-bound wake acknowledgements, watcher successor chains, supervision leases, and the version-pinned readings of vendor interfaces each of these came to need.
@@ -157,17 +160,23 @@ Where the tree stands at the start of the strip, and the budget it is cut toward
 | `tests/`                    | 264 files, about 217,000 lines | the minimal machine and the invariants, no more |
 | `docs/`                     | 66 files, about 19,000 lines   | a few pages at most                             |
 | Agent skills                | 29                             | a handful, each with a rare trigger             |
-| Harnesses, backends, forges | 14, 5, 3                       | only those in use, ideally one each             |
+| Harnesses, backends, forges | 14, 5, 3                       | Pi, Herdr, GitHub                               |
 
-## Choices the principles do not make
+## Choices made
 
-The principles say one of each; they do not say which.
-These are the captain's calls, made once before the cut:
+The principles say keep one of each; these are the ones the captain kept:
 
-- The primary harness and the worker harness.
-- The terminal backend.
-- Which delivery path or paths survive, and whether standing merge autonomy survives with them.
-- Whether any optional feature, such as secondmates or away supervision, is worth keeping as an opt-in.
+- **Harness:** Pi, for the first mate and every worker.
+- **Terminal backend:** Herdr.
+- **Delivery:** direct PR on GitHub - the worker pushes a branch and opens a PR, with no separate validation pipeline.
+- **Kept option:** secondmates.
+
+Everything outside these choices is breadth under the reduction test and goes.
+
+Still open:
+
+- Whether standing merge autonomy survives, or every merge waits for the captain's word.
+- Whether secondmates keep the remote route to other machines, or run on this machine only.
 
 ## Maintaining this file
 
