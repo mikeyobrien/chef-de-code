@@ -277,8 +277,16 @@
       "audience": "maintainer-architecture"
     },
     {
+      "path": "FIRST_PRINCIPLES.md",
+      "audience": "public-product"
+    },
+    {
       "path": "GROK_BOT.md",
       "audience": "public-product"
+    },
+    {
+      "path": "PROMPT.md",
+      "audience": "agent-runtime"
     },
     {
       "path": "README.md",
